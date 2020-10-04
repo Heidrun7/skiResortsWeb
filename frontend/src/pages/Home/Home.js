@@ -44,30 +44,30 @@ const Home = () => {
 
     weatherArray.forEach(function (arrayItem) {
       var temp = arrayItem.t2; // int
-      var sky = 0; // Is it sunny, rain etc? Then give it value
+      var conditions = 0; // Is it sunny, rain etc? Then give it value
       var wind = 0;
       if (arrayItem.merki === "sunny" || arrayItem.merki === "clear") {
-        sky = 0;
+        conditions = 0;
       } else if (
         arrayItem.merki === "mostlycloudy" ||
         arrayItem.merki === "partlycloudy"
       ) {
-        sky = 1;
+        conditions = 1;
       } else if (arrayItem.merki === "cloudy") {
-        sky = 2;
+        conditions = 2;
       } else if (arrayItem.merki === "chanceflurries") {
-        sky = 4;
+        conditions = 4;
       } else if (arrayItem.merki === "chancesnow") {
-        sky = 5;
+        conditions = 5;
       } else if (arrayItem.merki === "snow") {
-        sky = 7;
+        conditions = 7;
       } else if (arrayItem.merki === "rain") {
-        sky = 9;
+        conditions = 9;
       } else if (arrayItem.merki === "fog") {
-        sky = 11;
+        conditions = 11;
       }
       console.log("ArrayItemIndex: ", weatherArray.indexOf(arrayItem));
-      var dayValue = sky; // Sum of factors to consider when deciding the best day
+      var dayValue = conditions; // Sum of factors to consider when deciding the best day
       if (bestDay[0] > dayValue) {
         console.log("Changing from ", bestDay[0], " to ", dayValue);
         bestDay = [dayValue, weatherArray.indexOf(arrayItem)];
