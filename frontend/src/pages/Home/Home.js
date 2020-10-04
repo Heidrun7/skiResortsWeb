@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import DayWeather from "../../components/DayWeather/DayWeather";
 
 const Home = () => {
   const forecast = "https://api.blika.is/GetBlikaForecast24klst/";
@@ -65,6 +66,8 @@ const Home = () => {
         conditions = 9;
       } else if (arrayItem.merki === "fog") {
         conditions = 11;
+      } else {
+        conditions = 13; // If unknown/new conditions sign
       }
       console.log("ArrayItemIndex: ", weatherArray.indexOf(arrayItem));
       var dayValue = conditions; // Sum of factors to consider when deciding the best day
@@ -77,16 +80,17 @@ const Home = () => {
     });
     var bestDayDate = new Date(weatherArray[bestDay[1]].dags_spar);
     console.log("Best dayy: ", bestDayDate, " ", bestDay[1]);
-    setHlidarfjallBest(weatherArray[bestDay[1]].dags_spar);
+    setHlidarfjallBest(weatherArray[bestDay[1]]);
   };
 
   return (
     <>
       <p>Hvar er besta skíðaveðrið í dag?</p>
       <p>Hvenær næstu 7 daga er besta skíðaveðrið?</p>{" "}
+      <DayWeather day={hlidarfjallBest} />
       {/* Sýnir fyrsta daginn ef það er jafntefli */}
       {console.log("Hlíðarfjall: ", hlidarfjall)}
-      <p>{hlidarfjallBest.toString()}</p>
+      {/* <p>{hlidarfjallBest.toString()}</p> */}
     </>
   );
 };
