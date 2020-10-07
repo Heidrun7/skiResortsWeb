@@ -27,7 +27,6 @@ const Home = () => {
   }, []);
 
   const findBestDay = (weatherArray) => {
-    // Windspeed = 1 point per m/s
     // sunny = 0 points
     // clear = 0 points
     // mostlycloudy = 1 points
@@ -39,14 +38,15 @@ const Home = () => {
     // rain = 9 points
     // fog = 11 points
     // else = 0 points ?
-    console.log("HEYY: ", weatherArray);
+    console.log("Weather array: ", weatherArray);
 
-    var bestDay = [1000, 0]; // [Sum of dayValue, arrayPosition of day]
+    var bestDay = [1000, 1000, 0]; // [conditions, wind, arrayPosition of day in weatherArray]
 
     weatherArray.forEach(function (arrayItem) {
       var temp = arrayItem.t2; // int
       var conditions = 0; // Is it sunny, rain etc? Then give it value
-      var wind = 0;
+      var wind = arrayItem.f10;
+      console.log("wind: ", wind);
       if (arrayItem.merki === "sunny" || arrayItem.merki === "clear") {
         conditions = 0;
       } else if (
@@ -69,24 +69,29 @@ const Home = () => {
       } else {
         conditions = 13; // If unknown/new conditions sign
       }
-      console.log("ArrayItemIndex: ", weatherArray.indexOf(arrayItem));
-      var dayValue = conditions; // Sum of factors to consider when deciding the best day
-      if (bestDay[0] > dayValue) {
-        console.log("Changing from ", bestDay[0], " to ", dayValue);
-        bestDay = [dayValue, weatherArray.indexOf(arrayItem)];
-      }
 
-      // var date = new Date(arrayItem.dags_spar).getUTCDay(); // 0 = Monday, 6 = Sunday
+      // If the conditions are better and the wind speed is below 10 m/s
+      if (bestDay[0] > conditions && wind < 10) {
+        bestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
+      } else if (bestDay[0] === conditions && bestDay[1] > wind) {
+        // if (bestDay[1] > wind) {
+        console.log("Changing from ", bestDay[0], " to ", conditions);
+        bestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
+        // }
+      }
+      // Else do nothing and there is no good day so far this week
     });
-    var bestDayDate = new Date(weatherArray[bestDay[1]].dags_spar);
-    console.log("Best dayy: ", bestDayDate, " ", bestDay[1]);
-    setHlidarfjallBest(weatherArray[bestDay[1]]);
+    var bestDayDate = new Date(weatherArray[bestDay[2]].dags_spar);
+    console.log("Best day: ", bestDayDate);
+    setHlidarfjallBest(weatherArray[bestDay[2]]);
   };
 
   return (
     <>
-      <p>Hvar er besta skíðaveðrið í dag?</p>
-      <p>Hvenær næstu 7 daga er besta skíðaveðrið?</p>{" "}
+      <p>Hvað viltu sjá?</p>
+      <p>Hvar besta skíðaveðrið í dag er</p>
+      <p>Hvenær næstu 7 daga besta skíðaveðrið er</p>{" "}
+      {/* Birta 2 componenta sem linka á annars vegar besta í dag og hinsvegar besta næstu 7 þar sem er hægt að velja stað */}
       <DayWeather day={hlidarfjallBest} />
       {/* Sýnir fyrsta daginn ef það er jafntefli */}
       {console.log("Hlíðarfjall: ", hlidarfjall)}
