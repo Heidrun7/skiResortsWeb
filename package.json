@@ -1,0 +1,16 @@
+{
+  "name": "ski-resorts",
+  "version": "0.1.0",
+  "description": "Weather comparison for ski resorts",
+  "author": "Heidrun Heidarsdottir",
+  "private": true,
+  "dependencies": {},
+  "scripts": {
+    "test": "mocha --timeout 10000"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.1.3"
+  }
+}
