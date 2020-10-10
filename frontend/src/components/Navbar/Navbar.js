@@ -9,9 +9,9 @@ const Navbar = () => {
           pathname: "/",
         }}
       >
-        Home
+        Heim
       </Link>
-      <Link
+      {/* <Link
         to={{
           pathname: "/iceland",
         }}
@@ -24,13 +24,13 @@ const Navbar = () => {
         }}
       >
         Worldwide
-      </Link>
+      </Link> */}
       <Link
         to={{
           pathname: "/about",
         }}
       >
-        About
+        Um síðuna
       </Link>
     </>
   );
