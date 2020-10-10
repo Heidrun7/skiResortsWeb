@@ -1,6 +1,8 @@
 {
   "name": "ski-resorts",
   "version": "0.1.0",
+  "description": "Weather comparison for ski resorts",
+  "author": "Heidrun Heidarsdottir",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "mocha --timeout 10000",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -32,5 +34,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.1.3"
   }
 }
