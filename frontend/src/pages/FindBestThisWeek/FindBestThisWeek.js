@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DayWeather from "../../components/DayWeather/DayWeather";
 
@@ -6,26 +6,24 @@ const FindBestDay = () => {
   const forecast = "https://api.blika.is/GetBlikaForecast24klst/";
   const [loading, setLoading] = useState(true);
   // Change this to just resort, and the resort will update when the user changes their selection
-  const [hlidarfjall, setHlidarfjall] = useState([]);
-  const [hlidarfjallId, setHlidarfjallId] = useState(988);
-  const [hlidarfjallBest, setHlidarfjallBest] = useState({});
+  const [resort, setResort] = useState([]);
+  const [id, setId] = useState(988);
+  const [bestDay, setBestDay] = useState({});
   // const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     async function fetchWeather() {
       try {
-        const hlidarfjallWeather = await axios.get(
-          forecast + hlidarfjallId + "/"
-        );
+        const weather = await axios.get(forecast + id + "/");
         setLoading(false);
-        setHlidarfjall(hlidarfjallWeather.data.slice(0, 7));
-        findBestDay(hlidarfjallWeather.data.slice(0, 7));
+        setResort(weather.data.slice(0, 7));
+        findBestDay(weather.data.slice(0, 7));
         // setLoaded(true);
         // console.log(loaded);
       } catch {}
     }
     fetchWeather();
-  }, []);
+  }, [id]);
 
   const findBestDay = (weatherArray) => {
     // sunny = 0 points
@@ -41,7 +39,7 @@ const FindBestDay = () => {
     // else = 0 points ?
     console.log("Weather array: ", weatherArray);
 
-    var bestDay = [1000, 1000, 0]; // [conditions, wind, arrayPosition of day in weatherArray]
+    var currBestDay = [1000, 1000, 0]; // [conditions, wind, arrayPosition of day in weatherArray]
 
     weatherArray.forEach(function (arrayItem) {
       var temp = arrayItem.t2; // int
@@ -72,26 +70,44 @@ const FindBestDay = () => {
       }
 
       // If the conditions are better and the wind speed is below 10 m/s
-      if (bestDay[0] > conditions && wind < 10) {
-        bestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
-      } else if (bestDay[0] === conditions && bestDay[1] > wind) {
+      if (currBestDay[0] > conditions && wind < 10) {
+        currBestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
+      } else if (currBestDay[0] === conditions && currBestDay[1] > wind) {
         // if (bestDay[1] > wind) {
-        console.log("Changing from ", bestDay[0], " to ", conditions);
-        bestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
+        console.log("Changing from ", currBestDay[0], " to ", conditions);
+        currBestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
         // }
       }
       // Else do nothing and there is no good day so far this week
     });
-    var bestDayDate = new Date(weatherArray[bestDay[2]].dags_spar);
+    var bestDayDate = new Date(weatherArray[currBestDay[2]].dags_spar);
     console.log("Best day: ", bestDayDate);
-    setHlidarfjallBest(weatherArray[bestDay[2]]);
+    setBestDay(weatherArray[currBestDay[2]]);
+  };
+
+  const handleResortChange = (e) => {
+    console.log("Id: ", e.target.value);
+    setId(e.target.value);
   };
 
   return (
     <>
-      <DayWeather day={hlidarfjallBest} />
+      <div className="selectResort">
+        <select onChange={(e) => handleResortChange(e)} defaultValue={"988"}>
+          <option value="149">Bláfjöll</option>
+          <option value="987">Böggvisstaðafjall</option>
+          <option value="988">Hlíðarfjall</option>
+          <option value="924">Oddsskarð</option>
+          <option value="985">Skarðsdalur</option>
+          <option value="989">Stafdalur</option>
+          <option value="984">Tindastóll</option>
+          <option value="986">Tindaöxl</option>
+          <option value="983">Tungudalur</option>
+        </select>
+      </div>
+      <DayWeather day={bestDay} />
       {/* Sýnir fyrsta daginn ef það er jafntefli */}
-      {console.log("Hlíðarfjall: ", hlidarfjall)}
+      {console.log("Resort: ", resort)}
       {/* <p>{hlidarfjallBest.toString()}</p> */}
     </>
   );
