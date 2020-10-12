@@ -5,11 +5,10 @@ import DayWeather from "../../components/DayWeather/DayWeather";
 const FindBestDay = () => {
   const forecast = "https://api.blika.is/GetBlikaForecast24klst/";
   const [loading, setLoading] = useState(true);
-  // Change this to just resort, and the resort will update when the user changes their selection
   const [resort, setResort] = useState([]);
   const [id, setId] = useState(988);
   const [bestDay, setBestDay] = useState({});
-  // const [loaded, setLoaded] = useState(false);
+  // const [loaded, setLoaded] = useState(false); // Loading spinner
 
   useEffect(() => {
     async function fetchWeather() {
@@ -18,8 +17,6 @@ const FindBestDay = () => {
         setLoading(false);
         setResort(weather.data.slice(0, 7));
         findBestDay(weather.data.slice(0, 7));
-        // setLoaded(true);
-        // console.log(loaded);
       } catch {}
     }
     fetchWeather();
@@ -36,7 +33,7 @@ const FindBestDay = () => {
     // snow = 7 points
     // rain = 9 points
     // fog = 11 points
-    // else = 0 points ?
+    // else = 13 points
     console.log("Weather array: ", weatherArray);
 
     var currBestDay = [1000, 1000, 0]; // [conditions, wind, arrayPosition of day in weatherArray]
@@ -73,10 +70,7 @@ const FindBestDay = () => {
       if (currBestDay[0] > conditions && wind < 10) {
         currBestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
       } else if (currBestDay[0] === conditions && currBestDay[1] > wind) {
-        // if (bestDay[1] > wind) {
-        console.log("Changing from ", currBestDay[0], " to ", conditions);
         currBestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
-        // }
       }
       // Else do nothing and there is no good day so far this week
     });
@@ -86,7 +80,6 @@ const FindBestDay = () => {
   };
 
   const handleResortChange = (e) => {
-    console.log("Id: ", e.target.value);
     setId(e.target.value);
   };
 
@@ -106,9 +99,6 @@ const FindBestDay = () => {
         </select>
       </div>
       <DayWeather day={bestDay} />
-      {/* Sýnir fyrsta daginn ef það er jafntefli */}
-      {console.log("Resort: ", resort)}
-      {/* <p>{hlidarfjallBest.toString()}</p> */}
     </>
   );
 };
