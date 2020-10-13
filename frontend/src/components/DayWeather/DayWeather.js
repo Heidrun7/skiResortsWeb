@@ -1,11 +1,12 @@
 import React from "react";
 
 const DayWeather = (props) => {
-  const day = props.day;
-  const conditions = day.merki;
-  const temp = day.t2 + "°C";
-  const wind = day.f10 + " m/s";
-  const weekdayInt = new Date(day.dags_spar).getUTCDay(); // 0 = Sunday, 6 = Saturday
+  console.log("props: ", props);
+  const best = props.best;
+  const conditions = best.merki;
+  const temp = best.t2 + "°C";
+  const wind = best.f10 + " m/s";
+  const weekdayInt = new Date(best.dags_spar).getUTCDay(); // 0 = Sunday, 6 = Saturday
 
   let weekday = "";
   if (weekdayInt === 0) {
