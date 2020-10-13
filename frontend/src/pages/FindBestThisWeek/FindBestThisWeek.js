@@ -34,15 +34,13 @@ const FindBestDay = () => {
     // rain = 9 points
     // fog = 11 points
     // else = 13 points
-    console.log("Weather array: ", weatherArray);
 
     var currBestDay = [1000, 1000, 0]; // [conditions, wind, arrayPosition of day in weatherArray]
 
     weatherArray.forEach(function (arrayItem) {
-      var temp = arrayItem.t2; // int
+      //var temp = arrayItem.t2; // int
       var conditions = 0; // Is it sunny, rain etc? Then give it value
       var wind = arrayItem.f10;
-      console.log("wind: ", wind);
       if (arrayItem.merki === "sunny" || arrayItem.merki === "clear") {
         conditions = 0;
       } else if (
@@ -74,8 +72,7 @@ const FindBestDay = () => {
       }
       // Else do nothing and there is no good day so far this week
     });
-    var bestDayDate = new Date(weatherArray[currBestDay[2]].dags_spar);
-    console.log("Best day: ", bestDayDate);
+
     setBestDay(weatherArray[currBestDay[2]]);
   };
 
@@ -98,7 +95,7 @@ const FindBestDay = () => {
           <option value="983">Tungudalur</option>
         </select>
       </div>
-      <DayWeather day={bestDay} />
+      <DayWeather best={bestDay} />
     </>
   );
 };
