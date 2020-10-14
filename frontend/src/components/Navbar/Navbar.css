@@ -3,6 +3,7 @@
   height: 2rem;
   padding-top: 1rem;
   display: flex;
+  font-family: "Avenir";
 }
 
 .nav a {

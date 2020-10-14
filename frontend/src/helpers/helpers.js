@@ -1,4 +1,4 @@
-export default function getWeekday(weekdayInt) {
+export function getWeekday(weekdayInt) {
   let weekday = "";
 
   if (weekdayInt === 0) {
@@ -18,4 +18,36 @@ export default function getWeekday(weekdayInt) {
   }
 
   return weekday;
+}
+
+export function getMonthString(monthInt) {
+  console.log("Monthint: ", monthInt);
+  let month = "";
+
+  if (monthInt === 0) {
+    month = "janúar";
+  } else if (monthInt === 1) {
+    month = "febrúar";
+  } else if (monthInt === 2) {
+    month = "mars";
+  } else if (monthInt === 3) {
+    month = "apríl";
+  } else if (monthInt === 4) {
+    month = "maí";
+  } else if (monthInt === 5) {
+    month = "júní";
+  } else if (monthInt === 6) {
+    month = "júlí";
+  } else if (monthInt === 7) {
+    month = "ágúst";
+  } else if (monthInt === 8) {
+    month = "september";
+  } else if (monthInt === 9) {
+    month = "október";
+  } else if (monthInt === 10) {
+    month = "nóvember";
+  } else if (monthInt === 11) {
+    month = "desember";
+  }
+  return month;
 }

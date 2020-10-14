@@ -1,19 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import FindBestToday from "../FindBestToday/FindBestToday";
+import FindBestThisWeek from "../FindBestThisWeek/FindBestThisWeek";
+import "./Home.css";
 
 const Home = () => {
   return (
-    <>
-      <p>Hvað viltu sjá?</p>
-      <div>
-        <Link to="/bestToday">Hvar er besta skíðaveðrið í dag?</Link>
+    <div className="homeContainer">
+      <div className="today">
+        <div className="center">
+          <div className="content">
+            <Link to="/bestToday">
+              <>
+                <FindBestToday />
+              </>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div>
-        <Link to="/bestThisWeek">
-          Hvenær næstu 7 daga er besta skíðaveðrið?
-        </Link>
+      <div className="thisWeek">
+        <div className="center">
+          <div className="content">
+            <Link to="/bestThisWeek">
+              <>
+                <FindBestThisWeek />
+              </>
+            </Link>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

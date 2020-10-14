@@ -1,0 +1,33 @@
+.homeContainer {
+  display: grid;
+  grid-template-areas: "today thisWeek";
+}
+
+.today {
+  grid-area: today;
+  /* padding: auto; */
+
+  border-right: 1px solid black;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 70%;
+  background-color: pink;
+  text-align: center;
+}
+
+.thisWeek {
+  grid-area: thisWeek;
+  /* margin: auto auto; */
+  border-left: 1px solid black;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}

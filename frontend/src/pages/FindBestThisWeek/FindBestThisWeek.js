@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DayWeather from "../../components/DayWeather/DayWeather";
-import getWeekday from "../../helpers/helpers";
+import { getWeekday } from "../../helpers/helpers";
 
 const FindBestDay = () => {
   const forecast = "https://api.blika.is/GetBlikaForecast24klst/";
@@ -10,7 +10,7 @@ const FindBestDay = () => {
   const [id, setId] = useState(988);
   const [bestDay, setBestDay] = useState({});
   const [weekday, setWeekday] = useState("");
-  // const [loaded, setLoaded] = useState(false); // Loading spinner
+  const [loaded, setLoaded] = useState(false); // Loading spinner
 
   useEffect(() => {
     async function fetchWeather() {
@@ -80,6 +80,7 @@ const FindBestDay = () => {
       weatherArray[currBestDay[2]].dags_spar
     ).getUTCDay();
     setWeekday(getWeekday(weekdayInt));
+    setLoaded(true);
   };
 
   const handleResortChange = (e) => {
@@ -89,6 +90,7 @@ const FindBestDay = () => {
   return (
     <>
       <div className="selectResort">
+        <p>Besta veðrið í vikunni</p>
         <select onChange={(e) => handleResortChange(e)} defaultValue={"988"}>
           <option value="149">Bláfjöll</option>
           <option value="987">Böggvisstaðafjall</option>
@@ -101,8 +103,14 @@ const FindBestDay = () => {
           <option value="983">Tungudalur</option>
         </select>
       </div>
-      <p>{weekday}</p>
-      <DayWeather best={bestDay} />
+      {loaded ? (
+        <>
+          <p>{weekday}</p>
+          <DayWeather best={bestDay} />
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

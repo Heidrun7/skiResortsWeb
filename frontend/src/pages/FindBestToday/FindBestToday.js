@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DayWeather from "../../components/DayWeather/DayWeather";
+import { getMonthString } from "../../helpers/helpers";
 
 const FindBestToday = () => {
   const forecast = "https://api.blika.is/GetBlikaForecast24klst/";
-  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(true);
   const [allResorts, setAllResorts] = useState([]);
   const [bestResort, setBestResort] = useState({});
   const [selectedDay, setSelectedDay] = useState(0);
   const skiResorts = [149, 704, 983, 984, 985, 986, 987, 988, 989, 924];
+
+  let today = new Date();
+  let month = getMonthString(today.getMonth());
+  let dayString = today.getDate() + ". " + month + " " + today.getFullYear();
+  console.log("daystring: ", dayString);
 
   useEffect(() => {
     // Fetch weather data for one resort, then slice only data for the selected day
@@ -77,15 +83,23 @@ const FindBestToday = () => {
     });
 
     setBestResort(allResorts[currBestResort[2]]);
+    setLoaded(true);
   };
 
   return (
     <>
-      <p>Hvar er besta veðrið í dag?</p>
-      {bestResort && bestResort[0] ? (
+      <p>Besta veðrið í dag</p>
+      {dayString}
+      {loaded ? (
         <>
-          <p>{bestResort[0].nafn}</p>
-          <DayWeather best={bestResort[0]} />
+          {bestResort && bestResort[0] ? (
+            <>
+              <p className="resort">{bestResort[0].nafn}</p>
+              <DayWeather best={bestResort[0]} />
+            </>
+          ) : (
+            <></>
+          )}{" "}
         </>
       ) : (
         <></>
