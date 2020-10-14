@@ -1,0 +1,22 @@
+.nav {
+  background-color: lightcoral;
+  height: 2rem;
+  padding-top: 1rem;
+  display: flex;
+}
+
+.nav a {
+  color: white;
+}
+
+.home {
+  margin-left: 3rem;
+}
+
+.home img {
+  height: 1rem;
+}
+
+.about {
+  margin-left: 3rem;
+}
