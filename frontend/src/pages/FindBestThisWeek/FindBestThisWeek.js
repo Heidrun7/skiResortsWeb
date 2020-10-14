@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DayWeather from "../../components/DayWeather/DayWeather";
+import getWeekday from "../../helpers/helpers";
 
 const FindBestDay = () => {
   const forecast = "https://api.blika.is/GetBlikaForecast24klst/";
@@ -8,6 +9,7 @@ const FindBestDay = () => {
   const [resort, setResort] = useState([]);
   const [id, setId] = useState(988);
   const [bestDay, setBestDay] = useState({});
+  const [weekday, setWeekday] = useState("");
   // const [loaded, setLoaded] = useState(false); // Loading spinner
 
   useEffect(() => {
@@ -74,6 +76,10 @@ const FindBestDay = () => {
     });
 
     setBestDay(weatherArray[currBestDay[2]]);
+    let weekdayInt = new Date(
+      weatherArray[currBestDay[2]].dags_spar
+    ).getUTCDay();
+    setWeekday(getWeekday(weekdayInt));
   };
 
   const handleResortChange = (e) => {
@@ -95,6 +101,7 @@ const FindBestDay = () => {
           <option value="983">Tungudalur</option>
         </select>
       </div>
+      <p>{weekday}</p>
       <DayWeather best={bestDay} />
     </>
   );
