@@ -13,10 +13,13 @@
 .center {
   display: flex;
   justify-content: center;
+  height: 97vh;
 }
 
 .content {
   width: 70%;
+  height: 50vh;
+  margin-top: 10vh;
   background-color: pink;
   text-align: center;
 }
