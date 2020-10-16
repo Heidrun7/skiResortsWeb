@@ -26,7 +26,7 @@ The best skiing weather is found by considering multiple factors.
     - rain = 9 points
     - fog = 11 points
     - other/unknown = 13 points
-2. Wind speed
+2. Wind speed \
     If two or more resorts/days are tied after the conditions have been checked, the one with the lowest wind speed will be chosen as the best. 
     <!-- If the wind speed is above 10 m/s there is no good skiing day. -->
 <!-- 3. Temperature -->
