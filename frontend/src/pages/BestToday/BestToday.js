@@ -73,8 +73,9 @@ const FindBestToday = () => {
         conditions = 13; // If unknown/new conditions sign
       }
 
-      // If the conditions are better and the wind speed is below 10 m/s
-      if (currBestResort[0] > conditions && wind < 10) {
+      // If the conditions are better
+      // if (currBestResort[0] > conditions && wind < 10) { and the wind speed is below 10 m/s
+      if (currBestResort[0] > conditions) {
         currBestResort = [conditions, wind, allResorts.indexOf(arrayItem)];
       } else if (currBestResort[0] === conditions && currBestResort[1] > wind) {
         currBestResort = [conditions, wind, allResorts.indexOf(arrayItem)];
