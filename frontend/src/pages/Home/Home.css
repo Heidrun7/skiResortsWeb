@@ -1,0 +1,39 @@
+.homeContainer {
+  display: grid;
+  grid-template-areas: "today thisWeek";
+}
+
+.today {
+  grid-area: today;
+  border-right: 1px solid black;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  height: 97vh;
+}
+
+.content {
+  height: 50vh;
+  margin-top: 10vh;
+  text-align: center;
+}
+
+.thisWeek {
+  grid-area: thisWeek;
+  border-left: 1px solid black;
+}
+
+.seeWeek {
+  margin: 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.seeWeek a:hover {
+  color: lightcoral;
+}

@@ -1,0 +1,23 @@
+.nav {
+  background-color: black;
+  height: 2rem;
+  padding-top: 1rem;
+  display: flex;
+  font-family: "Avenir";
+}
+
+.nav a {
+  color: white;
+}
+
+.home {
+  margin-left: 3rem;
+}
+
+.home img {
+  height: 1rem;
+}
+
+.about {
+  margin-left: 3rem;
+}
