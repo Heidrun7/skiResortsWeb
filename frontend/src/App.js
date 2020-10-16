@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home/Home.js";
 import Navbar from "./components/Navbar/Navbar";
 import About from "./pages/About/About";
-import FindBestThisWeek from "./pages/FindBestThisWeek/FindBestThisWeek";
-import FindBestToday from "./pages/FindBestToday/FindBestToday";
+import BestToday from "./pages/BestToday/BestToday";
+import FullWeek from "./pages/FullWeek/FullWeek";
 
 const App = () => {
   return (
@@ -14,13 +14,9 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/bestToday" render={() => <FindBestToday />} />
-          <Route
-            exact
-            path="/bestThisWeek"
-            render={() => <FindBestThisWeek />}
-          />
-          <Route exact path="/about" render={() => <About />} />
+          <Route exact path="/dagur" render={() => <BestToday />} />
+          <Route exact path="/vikuspa" render={() => <FullWeek />} />
+          <Route exact path="/um" render={() => <About />} />
         </Switch>
       </Router>
     </>

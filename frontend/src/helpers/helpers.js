@@ -21,7 +21,6 @@ export function getWeekday(weekdayInt) {
 }
 
 export function getMonthString(monthInt) {
-  console.log("Monthint: ", monthInt);
   let month = "";
 
   if (monthInt === 0) {

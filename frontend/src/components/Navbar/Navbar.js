@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="about">
         <Link
           to={{
-            pathname: "/about",
+            pathname: "/um",
           }}
         >
           Um síðuna

@@ -1,4 +1,6 @@
 import React from "react";
+import "./DayWeather.css";
+
 import sunny from "../../images/icons/sunny.png";
 import clear from "../../images/icons/clear.png";
 import mostlycloudy from "../../images/icons/mostlycloudy.png";
@@ -12,10 +14,10 @@ import fog from "../../images/icons/fog.png";
 import unknown from "../../images/icons/unknown.png";
 
 const DayWeather = (props) => {
-  const best = props.best;
-  const conditions = best.merki;
-  const temp = Math.round(best.t2) + "°C";
-  const wind = best.f10.toFixed(0) + " m/s";
+  const day = props.day;
+  const conditions = day.merki;
+  const temp = Math.round(day.t2) + "°C";
+  const wind = day.f10.toFixed(0) + " m/s";
 
   let icon = unknown;
   if (conditions === "sunny") {
@@ -41,12 +43,13 @@ const DayWeather = (props) => {
   }
 
   return (
-    <>
-      <img src={icon} alt={conditions} width="70rem"></img>
-      <p>{conditions}</p>
-      <p>{temp}</p>
-      <p>{wind}</p>
-    </>
+    <div className="day">
+      <div className="iconContainer">
+        <img src={icon} alt={conditions} width="70rem"></img>
+      </div>
+      <div className="temp">{temp}</div>
+      <div className="wind">{wind}</div>
+    </div>
   );
 };
 

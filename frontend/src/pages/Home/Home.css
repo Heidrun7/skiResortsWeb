@@ -5,8 +5,6 @@
 
 .today {
   grid-area: today;
-  /* padding: auto; */
-
   border-right: 1px solid black;
 }
 
@@ -17,20 +15,25 @@
 }
 
 .content {
-  width: 70%;
   height: 50vh;
   margin-top: 10vh;
-  background-color: pink;
   text-align: center;
 }
 
 .thisWeek {
   grid-area: thisWeek;
-  /* margin: auto auto; */
   border-left: 1px solid black;
+}
+
+.seeWeek {
+  margin: 10px;
 }
 
 a {
   color: black;
   text-decoration: none;
+}
+
+.seeWeek a:hover {
+  color: lightcoral;
 }

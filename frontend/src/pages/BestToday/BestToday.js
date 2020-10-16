@@ -14,7 +14,6 @@ const FindBestToday = () => {
   let today = new Date();
   let month = getMonthString(today.getMonth());
   let dayString = today.getDate() + ". " + month + " " + today.getFullYear();
-  console.log("daystring: ", dayString);
 
   useEffect(() => {
     // Fetch weather data for one resort, then slice only data for the selected day
@@ -88,14 +87,14 @@ const FindBestToday = () => {
 
   return (
     <>
-      <p>Besta veðrið í dag</p>
+      <h3>Besta veðrið í dag</h3>
       {dayString}
       {loaded ? (
         <>
           {bestResort && bestResort[0] ? (
             <>
-              <p className="resort">{bestResort[0].nafn}</p>
-              <DayWeather best={bestResort[0]} />
+              <h4 className="resort">{bestResort[0].nafn}</h4>
+              <DayWeather day={bestResort[0]} />
             </>
           ) : (
             <></>

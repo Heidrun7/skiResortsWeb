@@ -1,0 +1,24 @@
+.weekContainer {
+  margin: 10px auto;
+  text-align: center;
+  justify-content: center;
+}
+
+.week {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 10px;
+}
+
+.singleDay {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+@media screen and (max-width: 780px) {
+  .week {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

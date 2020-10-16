@@ -3,11 +3,12 @@ import axios from "axios";
 import DayWeather from "../../components/DayWeather/DayWeather";
 import { getWeekday } from "../../helpers/helpers";
 
-const FindBestDay = () => {
+const FindBestDay = (props) => {
+  const id = props.id;
+  const select = props.select;
   const forecast = "https://api.blika.is/GetBlikaForecast24klst/";
   const [loading, setLoading] = useState(true);
-  const [resort, setResort] = useState([]);
-  const [id, setId] = useState(988);
+
   const [bestDay, setBestDay] = useState({});
   const [weekday, setWeekday] = useState("");
   const [loaded, setLoaded] = useState(false); // Loading spinner
@@ -17,8 +18,7 @@ const FindBestDay = () => {
       try {
         const weather = await axios.get(forecast + id + "/");
         setLoading(false);
-        setResort(weather.data.slice(0, 7));
-        findBestDay(weather.data.slice(0, 7));
+        findBestDay(weather.data.slice(0, 7)); // Only use the first 7 days
       } catch {}
     }
     fetchWeather();
@@ -40,9 +40,9 @@ const FindBestDay = () => {
     var currBestDay = [1000, 1000, 0]; // [conditions, wind, arrayPosition of day in weatherArray]
 
     weatherArray.forEach(function (arrayItem) {
-      //var temp = arrayItem.t2; // int
       var conditions = 0; // Is it sunny, rain etc? Then give it value
       var wind = arrayItem.f10;
+
       if (arrayItem.merki === "sunny" || arrayItem.merki === "clear") {
         conditions = 0;
       } else if (
@@ -83,30 +83,16 @@ const FindBestDay = () => {
     setLoaded(true);
   };
 
-  const handleResortChange = (e) => {
-    setId(e.target.value);
-  };
-
   return (
     <>
       <div className="selectResort">
-        <p>Besta veðrið í vikunni</p>
-        <select onChange={(e) => handleResortChange(e)} defaultValue={"988"}>
-          <option value="149">Bláfjöll</option>
-          <option value="987">Böggvisstaðafjall</option>
-          <option value="988">Hlíðarfjall</option>
-          <option value="924">Oddsskarð</option>
-          <option value="985">Skarðsdalur</option>
-          <option value="989">Stafdalur</option>
-          <option value="984">Tindastóll</option>
-          <option value="986">Tindaöxl</option>
-          <option value="983">Tungudalur</option>
-        </select>
+        <h3>Besta veðrið í vikunni</h3>
+        {select}
       </div>
       {loaded ? (
         <>
-          <p>{weekday}</p>
-          <DayWeather best={bestDay} />
+          <h4>{weekday}</h4>
+          <DayWeather day={bestDay} />
         </>
       ) : (
         <></>
