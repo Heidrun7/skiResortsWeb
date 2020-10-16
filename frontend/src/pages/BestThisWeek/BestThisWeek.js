@@ -66,8 +66,9 @@ const FindBestDay = (props) => {
         conditions = 13; // If unknown/new conditions sign
       }
 
-      // If the conditions are better and the wind speed is below 10 m/s
-      if (currBestDay[0] > conditions && wind < 10) {
+      // If the conditions are better
+      // if (currBestDay[0] > conditions && wind < 10) { and the wind speed is below 10 m/s
+      if (currBestDay[0] > conditions) {
         currBestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
       } else if (currBestDay[0] === conditions && currBestDay[1] > wind) {
         currBestDay = [conditions, wind, weatherArray.indexOf(arrayItem)];
