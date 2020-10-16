@@ -1,9 +1,3 @@
-https://www.myweather2.com/developer/apis.aspx?uref=f8add9ec-fe95-4001-b822-df8680e49dce
-
-
-https://api.blika.is/GetBlikaForecast24klst/26/
-
-
 # Introduction
 SkiResorts is a React web application that displays weather forecasting information for ski resorts in Iceland to aid the user in two purposes:
     1. Hunting down the best skiing weather in the country that day
