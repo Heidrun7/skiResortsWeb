@@ -1,3 +1,4 @@
+// Convert integer weekday value to day name in Icelandic
 export function getWeekday(weekdayInt) {
   let weekday = "";
 
@@ -20,6 +21,7 @@ export function getWeekday(weekdayInt) {
   return weekday;
 }
 
+// Convert integer month value to month name in Icelandic
 export function getMonthString(monthInt) {
   let month = "";
 
@@ -49,4 +51,60 @@ export function getMonthString(monthInt) {
     month = "desember";
   }
   return month;
+}
+
+export function getConditionsValue(conditionsString) {
+  let conditions;
+  // Use Fibonacci sequence to assign values to weather conditions
+  if (conditionsString === "sunny" || conditionsString === "clear") {
+    conditions = 0;
+  } else if (
+    conditionsString === "mostlycloudy" ||
+    conditionsString === "partlycloudy"
+  ) {
+    conditions = 1;
+  } else if (conditionsString === "cloudy") {
+    conditions = 2;
+  } else if (conditionsString === "chanceflurries") {
+    conditions = 3;
+  } else if (conditionsString === "chancesnow") {
+    conditions = 3;
+  } else if (conditionsString === "snow") {
+    conditions = 5;
+  } else if (conditionsString === "rain") {
+    conditions = 8;
+  } else if (conditionsString === "fog") {
+    conditions = 13;
+  } else {
+    conditions = 21; // If unknown/new conditions sign
+  }
+  return conditions;
+}
+
+// Find the best resort or day of week
+export function findBest(array, type) {
+  console.log("Array: ", array);
+  let currBest = [1000, 1000, 1000, 0]; // [weatherSum, conditions, wind, arrayPosition of day in weatherArray]
+
+  array.forEach(function (arrayItem) {
+    var conditions;
+    var wind;
+    if (type === "week") {
+      // If the page calling the function is BestThisWeek
+      conditions = getConditionsValue(arrayItem.merki); // Is it sunny, rain etc?
+      wind = Number(arrayItem.f10.toFixed(0));
+    } else if (type === "resort") {
+      // If the page calling the function is BestToday
+      conditions = getConditionsValue(arrayItem[0].merki); // Is it sunny, rain etc?
+      wind = Number(arrayItem[0].f10.toFixed(0));
+    }
+
+    var weatherSum = conditions + wind;
+
+    // If the conditions are better
+    if (currBest[0] > weatherSum) {
+      currBest = [weatherSum, conditions, wind, array.indexOf(arrayItem)];
+    } // Else keep the current best day
+  });
+  return currBest;
 }

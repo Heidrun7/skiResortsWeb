@@ -20,5 +20,10 @@
   .week {
     display: grid;
     grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .singleDay {
+    width: 50%;
+    margin: auto;
   }
 }
