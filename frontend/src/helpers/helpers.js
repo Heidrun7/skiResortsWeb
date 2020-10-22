@@ -83,7 +83,6 @@ export function getConditionsValue(conditionsString) {
 
 // Find the best resort or day of week
 export function findBest(array, type) {
-  console.log("Array: ", array);
   let currBest = [1000, 1000, 1000, 0]; // [weatherSum, conditions, wind, arrayPosition of day in weatherArray]
 
   array.forEach(function (arrayItem) {
