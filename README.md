@@ -7,26 +7,26 @@ The forecasting data is collected from the website [blika.is](https://www.blika.
 
 # Calculations
 
-The best skiing weather is found by considering multiple factors.
+The best skiing weather is found by calculating the sum of two factors.
 1. Conditions
     - sunny = 0 points
     - clear = 0 points
     - mostlycloudy = 1 points
     - partlycloudy = 1 points
     - cloudy = 2 point
-    - chanceflurries = 4 points;
-    - chancesnow = 5 points
-    - snow = 7 points
-    - rain = 9 points
-    - fog = 11 points
-    - other/unknown = 13 points
+    - chanceflurries = 3 points;
+    - chancesnow = 3 points
+    - snow = 5 points
+    - rain = 8 points
+    - fog = 13 points
+    - other/unknown = 21 points
 2. Wind speed \
-    If two or more resorts/days are tied after the conditions have been checked, the one with the lowest wind speed will be chosen as the best. 
+    The wind speed in m/s, rounded to a whole number.
     <!-- If the wind speed is above 10 m/s there is no good skiing day. -->
 <!-- 3. Temperature -->
 
 
-<!-- If there is a tie, the first day is shown to minimize the likelihood of missing a good skiing day. -->
+If there is a tie, the first day is shown to minimize the likelihood of missing a good skiing day.
 
 # Example response
 The response from https://api.blika.is/GetBlikaForecast24klst/988/ is an array of objects where each object contains weather forecasting data for a single day:

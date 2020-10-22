@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DayWeather from "../../components/DayWeather/DayWeather";
-import { getWeekday } from "../../helpers/helpers";
+import { findBest, getWeekday } from "../../helpers/helpers";
 import "./FullWeek.css";
 
 const FullWeek = () => {
@@ -26,14 +26,21 @@ const FullWeek = () => {
     setId(e.target.value);
   };
 
+  let bestDayIndex = findBest(week, "week")[3]; // Get the day index of the best day this week
+
   // Maps over the whole week and displays each day's forecast
   let weekData = <></>;
   if (week.length) {
     weekData = week.map((data, index) => {
       let weekdayInt = new Date(data.dags_spar).getUTCDay();
       let weekday = getWeekday(weekdayInt);
+      let color = "";
+      if (bestDayIndex === index) {
+        // Set a color for the best day only
+        color = "powderblue";
+      }
       return (
-        <div className="singleDay">
+        <div className="singleDay" style={{ backgroundColor: color }}>
           {weekday}
           <DayWeather day={data} />
         </div>
