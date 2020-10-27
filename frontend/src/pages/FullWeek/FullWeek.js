@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import crown from "../../images/icons/crown.png";
 import DayWeather from "../../components/DayWeather/DayWeather";
 import { findBest, getWeekday } from "../../helpers/helpers";
 import "./FullWeek.css";
@@ -34,16 +35,22 @@ const FullWeek = () => {
     weekData = week.map((data, index) => {
       let weekdayInt = new Date(data.dags_spar).getUTCDay();
       let weekday = getWeekday(weekdayInt);
-      let color = "";
+      let showCrown = "";
       if (bestDayIndex === index) {
-        // Set a color for the best day only
-        color = "powderblue";
+        showCrown = true;
       }
       return (
-        <div className="singleDay" style={{ backgroundColor: color }}>
-          {weekday}
-          <DayWeather day={data} />
-        </div>
+        <>
+          <div className="singleDay">
+            {showCrown ? (
+              <img src={crown} alt="Best day" className="crown"></img>
+            ) : (
+              <div style={{ display: "none" }}></div>
+            )}
+            <div className="weekday">{weekday}</div>
+            <DayWeather day={data} />
+          </div>
+        </>
       );
     });
   }

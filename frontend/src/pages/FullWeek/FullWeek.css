@@ -1,5 +1,6 @@
 .weekContainer {
-  margin: 10px auto;
+  margin: 20px auto;
+  width: 90%;
   text-align: center;
   justify-content: center;
 }
@@ -7,13 +8,14 @@
 .week {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .singleDay {
   padding: 10px;
   text-align: center;
   border: 1px solid black;
+  position: relative;
 }
 
 @media screen and (max-width: 780px) {
@@ -26,4 +28,12 @@
     width: 50%;
     margin: auto;
   }
+}
+
+.crown {
+  width: 30%;
+  position: absolute;
+  right: -12%;
+  margin-top: -14%;
+  z-index: 100;
 }
