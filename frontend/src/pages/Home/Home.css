@@ -1,3 +1,7 @@
+.wrapper {
+  position: relative;
+}
+
 .homeContainer {
   display: grid;
   grid-template-areas: "today thisWeek";
@@ -36,4 +40,30 @@ a {
 
 .seeWeek a:hover {
   color: lightcoral;
+}
+
+.overlay {
+  background-color: black;
+  color: white;
+  display: inline-block;
+  position: relative;
+  height: 100vh;
+}
+
+/* Move skier from top left to bottom right so he skis down */
+.skier {
+  position: absolute;
+  width: 10%;
+  top: 0;
+  left: 0;
+  animation: 3s ease-in-out infinite alternate skiDown;
+}
+
+@keyframes skiDown {
+  /* from {
+    transform: translateX(0);
+  } */
+  to {
+    transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+  }
 }
