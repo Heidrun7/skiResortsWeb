@@ -13,7 +13,7 @@ The best skiing weather is found by calculating the sum of two factors.
     - clear = 0 points
     - mostlycloudy = 1 points
     - partlycloudy = 1 points
-    - cloudy = 2 point
+    - cloudy = 2 points
     - chanceflurries = 3 points;
     - chancesnow = 3 points
     - snow = 5 points
