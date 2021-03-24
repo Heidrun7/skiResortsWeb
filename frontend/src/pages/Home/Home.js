@@ -14,6 +14,7 @@ const Home = () => {
     setId(e.target.value);
   };
 
+  // Stop displaying the opening animation screen and display the Home content
   useEffect(() => {
     setTimeout(function () {
       setDisplayOverlay("none");
