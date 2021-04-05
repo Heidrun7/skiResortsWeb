@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BestToday from "../BestToday/BestToday";
 import BestThisWeek from "../BestThisWeek/BestThisWeek";
-import skier from "../../images/skier/skier_white.png";
+import skier from "../../images/skier/skier_white_right.png";
 import "./Home.css";
 
 const Home = () => {
@@ -14,6 +14,7 @@ const Home = () => {
     setId(e.target.value);
   };
 
+  // Stop displaying the opening animation screen and display the Home content
   useEffect(() => {
     setTimeout(function () {
       setDisplayOverlay("none");
