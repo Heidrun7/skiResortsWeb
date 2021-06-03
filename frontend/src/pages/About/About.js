@@ -10,7 +10,7 @@ const About = () => {
         veðurupplýsingar eru sóttar af <a href="blika.is">blika.is</a>.
       </p>
       <p>
-        Þessi síða er einungis gæluverkefni og umsjónaraðili tekur ekki ábyrgð á
+        Þessi síða er gæluverkefni og umsjónaraðili tekur ekki ábyrgð á
         því að veðurspár reynist réttar eða að notendur missi af góðum skíðadegi
         vegna skekkju í útreikningum.
       </p>
