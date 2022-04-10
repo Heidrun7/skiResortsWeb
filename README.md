@@ -47,3 +47,4 @@ The response from https://api.blika.is/GetBlikaForecast24klst/988/ is an array o
 
 # Possible additions:
 - Choose which day to compare all the resorts
+- Embed webcams of every resort (if available)
